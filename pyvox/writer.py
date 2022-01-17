@@ -36,7 +36,7 @@ class VoxWriter(object):
 
     def write(self):
 
-        res = pack('4si', b'VOX ', 150)
+        res = pack('4si', b'VOX ', 160)
 
         chunks = []
 

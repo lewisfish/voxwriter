@@ -36,7 +36,7 @@ class ExportSomeData(Operator, ExportHelper):
 		description="Voxel Detail",
 		default=32,
 		min=1,
-		max=256,
+		max=500,
 	)
 	use_default_palette: BoolProperty(
 		name="Use default palette",
@@ -90,7 +90,7 @@ class ExportSomeData(Operator, ExportHelper):
 		print("running voxelize...")
 		voxelize(context.active_object,
 			     self.filepath,
-				 vox_detail=max(0,min(256,self.voxel_detail)),
+				 vox_detail=max(0,min(500,self.voxel_detail)),
 				 use_default_palette=self.use_default_palette,
 				 use_selected_objects=self.use_selected_objects,
 				 use_scene_units=self.use_scene_units,
