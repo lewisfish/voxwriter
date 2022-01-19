@@ -1,4 +1,4 @@
-def chunks(l, n):
-    """Yield successive n-sized chunks from l."""
-    for i in range(0, len(l), n):
-        yield l[i:i + n]
+def chunks(listy, n):
+    """Yield successive n-sized chunks from listy."""
+    for i in range(0, len(listy), n):
+        yield listy[i:i + n]
