@@ -34,7 +34,10 @@ class VoxWriter(object):
 
     def write(self):
 
-        res = pack('4si', b'VOX ', 160)
+        if self.vox.models[0].size.x > 256 or self.vox.models[0].size.y > 256 or self.vox.models[0].size.z > 256:
+            res = pack('4si', b'VOX ', 160)
+        else:
+            res = pack('4si', b'VOX ', 150)
 
         chunks = []
 
@@ -43,7 +46,7 @@ class VoxWriter(object):
 
         for m in self.vox.models:
             chunks.append((b'SIZE', pack('iii', *m.size)))
-            if m.size[0] > 256 & m.size[1] > 256 & m.size[3] > 256:
+            if m.size.x > 256 or m.size.y > 256 or m.size.z > 256:
                 chunks.append((b'XYZI', pack('i', len(m.voxels)) + b''.join(pack('IIIB', *v) for v in m.voxels)))
             else:
                 chunks.append((b'XYZI', pack('i', len(m.voxels)) + b''.join(pack('BBBB', *v) for v in m.voxels)))
